@@ -1,0 +1,40 @@
+body{
+    margin: 0 auto;
+    padding: 0;
+    font-family: poppins;
+    color: white;
+}
+
+main{
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+}
+
+.box{
+    height: 2.3em;
+    width: 2.3em;
+    border: 2px solid black;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TW {
+    background-color: red;
+}
+
+.DL {
+    background-color: rgb(0, 153, 255);
+}
+
+.DW {
+    background-color: rgb(255, 0, 98);
+}
+
+.TL {
+    background-color: rgb(132, 0, 255);
+}
