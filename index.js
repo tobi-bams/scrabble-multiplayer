@@ -5,6 +5,29 @@ let id = document.getElementById("1");
 let targetContainer = document.getElementById('target');
 let idLetter = 1;
 
+let racket1 = document.getElementById("racket1");
+let racket2 = document.getElementById("racket2");
+
+racket1.addEventListener("dragover", (event) => {
+    event.preventDefault();
+})
+
+racket1.addEventListener("drop", (event) => {
+    event.preventDefault();
+    let id = event.dataTransfer.getData("text");
+    event.target.appendChild(document.getElementById(id));
+})
+
+racket2.addEventListener("dragover", (event) => {
+    event.preventDefault();
+})
+
+racket2.addEventListener("drop", (event) => {
+    event.preventDefault();
+    let id = event.dataTransfer.getData("text");
+    event.target.appendChild(document.getElementById(id));
+})
+
 // targetContainer.addEventListener('dragover', (ev) => {
 //     ev.preventDefault();
 //     let id  = ev.dataTransfer.getData("text");
@@ -15,8 +38,6 @@ boxes.forEach(box => {
     i+= 1;
     box.addEventListener('dragover', (ev) => {
         ev.preventDefault();
-        let id  = ev.dataTransfer.getData("text");
-        console.log("happy");
     });
     box.addEventListener('drop', (evt) => {
         evt.preventDefault();
