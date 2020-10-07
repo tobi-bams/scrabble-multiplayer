@@ -15,7 +15,7 @@ main{
     width: 40%;
 }
 
-.letters{
+.letters1{
     height: 2.3em;
     width: 2.3em;
     border: 2px solid black;
@@ -26,6 +26,25 @@ main{
     align-items: center;
     background-color: chocolate;
     color: black;
+}
+
+.letters2{
+    height: 2.3em;
+    width: 2.3em;
+    border: 2px solid black;
+    border: none;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: chocolate;
+    color: black;
+    padding: 0.5em;
+}
+
+small{
+    justify-self: flex-end;
+    align-self: flex-end;
 }
 
 aside{
@@ -64,7 +83,7 @@ aside{
     height: 100%;
     width: 100%;
 }
-#racket1{
+#racket2{
     height: 100%;
     width: 100%;
 }

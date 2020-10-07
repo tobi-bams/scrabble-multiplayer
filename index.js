@@ -1,5 +1,6 @@
 let boxes = document.querySelectorAll(".box");
-let letters = document.querySelectorAll(".letters");
+let letters1 = document.getElementsByClassName("letters1");
+let letters2 = document.getElementsByClassName("letters2")
 let i = 1;
 let id = document.getElementById("1");
 let targetContainer = document.getElementById('target');
@@ -7,6 +8,23 @@ let idLetter = 1;
 
 let racket1 = document.getElementById("racket1");
 let racket2 = document.getElementById("racket2");
+
+let player1 = document.getElementById('player1');
+let player2 = document.getElementById('player2');
+
+player2.disabled = true;
+
+player1.addEventListener("click", () => {
+    gettingLetters1();
+    player2.disabled = false;
+    player1.disabled = true;
+})
+
+player2.addEventListener("click", () => {
+    gettingLetters2();
+    player2.disabled = true;
+    player1.disabled = false;
+})
 
 racket1.addEventListener("dragover", (event) => {
     event.preventDefault();
@@ -65,10 +83,10 @@ let tiles = [{letter: "A", value: 1}, {letter: "A", value: 1}, {letter: "A", val
 ];
 
 
-function selecting(){
+function selecting1(){
     let check = tiles.splice(Math.floor(Math.random()*tiles.length), 1);
     let letterTile = document.createElement('div');
-    letterTile.setAttribute("class", "letters");
+    letterTile.setAttribute("class", "letters1");
     let letter = document.createElement("p");
     letter.textContent = check[0].letter;
     letterTile.appendChild(letter);
@@ -81,20 +99,59 @@ function selecting(){
     racket1.appendChild(letterTile);
 }
 
-if(letters.length < 14){
-    let moreLetter = 14 - letters.length;
-    for(let i = 0; i < moreLetter; i++){
-        selecting();
+function selecting2(){
+    let check = tiles.splice(Math.floor(Math.random()*tiles.length), 1);
+    let letterTile = document.createElement('div');
+    letterTile.setAttribute("class", "letters2");
+    let letter = document.createElement("p");
+    let value = document.createElement("small");
+    letter.textContent = check[0].letter;
+    value.textContent = check[0].value;
+    letterTile.appendChild(letter);
+    letterTile.appendChild(value);
+    letterTile.setAttribute("id", idLetter);
+    idLetter += 1;
+    letterTile.setAttribute("draggable", "true");
+    letterTile.addEventListener('dragstart', (evt) => {
+        evt.dataTransfer.setData("Text", evt.target.id);
+    })
+    racket2.appendChild(letterTile);
+}
+
+function gettingLetters1(){
+    if(racket1.childElementCount < 7){
+        let moreLetter = 7 - racket1.childElementCount;
+        for(let i = 0; i < moreLetter; i++){
+            if(tiles.length !== 0){
+                selecting1();
+            }
+        }
     }
 }
 
-letters.forEach((letter) => {
-    letter.setAttribute("id", idLetter);
-    idLetter += 1;
-    letter.setAttribute("draggable", "true");
-    letter.addEventListener('dragstart', (evt) => {
-        evt.dataTransfer.setData("Text", evt.target.id);
-    })
+gettingLetters1();
+
+
+function gettingLetters2(){
+    if(racket2.childElementCount < 7){
+        let moreLetter = 7 - racket2.childElementCount;
+        for(let i = 0; i < moreLetter; i++){
+            if(tiles.length !== 0){
+                selecting2();
+            }
+        }
+    }
+}
+
+gettingLetters2();
+
+// letters.forEach((letter) => {
+//     letter.setAttribute("id", idLetter);
+//     idLetter += 1;
+//     letter.setAttribute("draggable", "true");
+//     letter.addEventListener('dragstart', (evt) => {
+//         evt.dataTransfer.setData("Text", evt.target.id);
+//     })
     
-})
+// })
 
