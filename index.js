@@ -5,25 +5,85 @@ let i = 1;
 let id = document.getElementById("1");
 let targetContainer = document.getElementById('target');
 let idLetter = 1;
+let boxId = 1;
 
 let racket1 = document.getElementById("racket1");
 let racket2 = document.getElementById("racket2");
 
 let player1 = document.getElementById('player1');
 let player2 = document.getElementById('player2');
+let player1ScoreCounter;
+let player2ScoreCounter;
+
+let player1ScoreArray = [];
+let player2ScoreArray = [];
+
+let player1ScoreDisplay = 0;
+let player2ScoreDisplay = 0;
+
+let score1 = document.getElementById('score1');
+let score2 = document.getElementById('score2');
+
+let playedTiles = [];
+let words = [];
+
+let emptyTile = document.querySelectorAll(".letterFill");
+
+let blankLetterDiv = document.getElementById('blankLetter');
+
 
 player2.disabled = true;
 
 player1.addEventListener("click", () => {
-    gettingLetters1();
-    player2.disabled = false;
-    player1.disabled = true;
+    
+    if(document.getElementById("boxId113").childElementCount !== 0){
+        gettingLetters1();
+        player2.disabled = false;
+        player1.disabled = true;
+        player1ScoreDisplay = 0;
+        selectedpoint = [];
+        boxes.forEach((box) => {
+            if(box.childElementCount !== 0){
+                box.firstChild.setAttribute("draggable", "false");
+                if(box.childNodes[0].className === "letters1"){
+                    let letterScore = +box.childNodes[0].childNodes[1].textContent;
+                    if(box.className === "box DL"){
+                       letterScore = letterScore * 2;
+                        }
+                    
+                    player1ScoreDisplay += letterScore;
+                    score1.textContent = player1ScoreDisplay;
+                }
+               
+            }
+        })
+    }
+
+    else {
+        console.log("You must start playing your tiles from the center");
+        alert('You must start playing your tiles from the center');
+    }
+  
+
 })
 
 player2.addEventListener("click", () => {
     gettingLetters2();
     player2.disabled = true;
     player1.disabled = false;
+    //player2ScoreCounter = 0;
+    player2ScoreDisplay = 0;
+    boxes.forEach((box) => {
+        if(box.childElementCount !== 0){
+            box.firstChild.setAttribute("draggable", "false");
+            if(box.childNodes[0].className === "letters2"){
+                let letterScore = +box.childNodes[0].childNodes[1].textContent;
+                player2ScoreDisplay += letterScore;
+                score2.textContent = player2ScoreDisplay;
+            }
+           
+        }
+    })
 })
 
 racket1.addEventListener("dragover", (event) => {
@@ -33,7 +93,9 @@ racket1.addEventListener("dragover", (event) => {
 racket1.addEventListener("drop", (event) => {
     event.preventDefault();
     let id = event.dataTransfer.getData("text");
-    event.target.appendChild(document.getElementById(id));
+    if(document.getElementById(id).className === "letters1"){
+        event.target.appendChild(document.getElementById(id));
+    }
 })
 
 racket2.addEventListener("dragover", (event) => {
@@ -43,12 +105,15 @@ racket2.addEventListener("dragover", (event) => {
 racket2.addEventListener("drop", (event) => {
     event.preventDefault();
     let id = event.dataTransfer.getData("text");
-    event.target.appendChild(document.getElementById(id));
+    if(document.getElementById(id).className === "letters2"){
+        event.target.appendChild(document.getElementById(id));
+    }
 });
 
 
 boxes.forEach(box => {
-    i+= 1;
+    box.setAttribute("id", `boxId${boxId}`);
+    boxId += 1;
     box.addEventListener('dragover', (ev) => {
         ev.preventDefault();
     });
@@ -56,7 +121,42 @@ boxes.forEach(box => {
         evt.preventDefault();
         let id  = evt.dataTransfer.getData("text");
         evt.target.appendChild(document.getElementById(id));
+        console.log(evt.target.id);
+        
+        // document.getElementById(id).setAttribute("draggable", "false");
+        // console.log(+document.getElementById(id).childNodes[1].textContent);
+        // if(document.getElementById(id).className === "letters1"){
+        //     player1ScoreArray.push(+document.getElementById(id).childNodes[1].textContent);
+        // }
+        // if(document.getElementById(id).className === "letters2"){
+        //     player2ScoreArray.push(+document.getElementById(id).childNodes[1].textContent);
+        // }
+        // if(box.className === "box DL"){
+        //     document.getElementById(id).childNodes[1].textContent = +document.getElementById(id).childNodes[1].textContent * 2;
+        // }
+        if(document.getElementById(id).childNodes[0].textContent === ""){
+            console.log("happy");
+            blankLetterDiv.style.display = "grid";
+            // fillEmptyTile();
+            emptyTile.forEach((tile) => {
+                tile.addEventListener('click', (event) => {
+                    document.getElementById(id).childNodes[0].textContent = event.target.textContent;
+                    blankLetterDiv.style.display = "none";
+                })
+            })
+        }
+        words = [];
+        playedWords = [];
+        word = '';
+        word2 = '';
+        wordCheck = '';
+        tobiI = 1;
+        tobiI2 = 1;
+        gettingwork(evt.target.id);
     })
+
+    
+
 });
 
 
@@ -88,8 +188,11 @@ function selecting1(){
     let letterTile = document.createElement('div');
     letterTile.setAttribute("class", "letters1");
     let letter = document.createElement("p");
+    let value = document.createElement('small');
+    value.textContent = check[0].value;
     letter.textContent = check[0].letter;
     letterTile.appendChild(letter);
+    letterTile.appendChild(value);
     letterTile.setAttribute("id", idLetter);
     idLetter += 1;
     letterTile.setAttribute("draggable", "true");
@@ -145,13 +248,266 @@ function gettingLetters2(){
 
 gettingLetters2();
 
-// letters.forEach((letter) => {
-//     letter.setAttribute("id", idLetter);
-//     idLetter += 1;
-//     letter.setAttribute("draggable", "true");
-//     letter.addEventListener('dragstart', (evt) => {
-//         evt.dataTransfer.setData("Text", evt.target.id);
-//     })
+let firstRow = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
+function checker(id){
+    let lastRow = [211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225];
+    let value = +id.substring(5);
+    let checker1 = `boxId${value - 15}`;
+    let checker2 = `boxId${value + 15}`;
+    console.log(checker2);
+    let checker3 = `boxId${value - 1}`;
+    let checker4 = `boxId${value + 1}`;
+
+    if( firstRow.includes(value)){
+        if(value === 1){
+            if(document.getElementById(checker2).childElementCount === 0 || document.getElementById(checker4).childElementCount === 0){
+                return console.log('invalid');
+            }
+        }
+        else {
+            return firstBoardChecker(id)
+        }
+        }
+
+    else if(lastRow.includes(value)){
+        if(value === 225){
+            if(document.getElementById(checker1).childElementCount === 0 || document.getElementById(checker3)){
+                return console.log('invalid');
+            }
+        }
+        else{
+            return lastBoardChecker(id);
+        }
+                
+            }
+
+    if(document.getElementById(checker1).childElementCount === 0 && document.getElementById(checker2).childElementCount === 0 && document.getElementById(checker3).childElementCount === 0 && document.getElementById(checker4).childElementCount === 0){
+
+        return console.log('Not Valid');
+    }
+    else {
+        horizontal(id);
+        vertical(id);
+        
+    }
+}
+
+function firstBoardChecker(id){
+    let value = +id.substring(5);
+    let checker2 = `boxId${value + 15}`;
+    let checker3 = `boxId${value - 1}`;
+    let checker4 = `boxId${value + 1}`;
+
+    if(document.getElementById(checker2).childElementCount === 0 && document.getElementById(checker3).childElementCount === 0 && document.getElementById(checker4).childElementCount === 0){
+
+        return console.log('Not Valid');
+    }
+    else {
+        horizontal(id);
+        vertical(id);
+        
+    }
+}
+
+function lastBoardChecker(id){
+    let value = +id.substring(5);
+    let checker2 = `boxId${value - 15}`;
+    let checker3 = `boxId${value - 1}`;
+    let checker4 = `boxId${value + 1}`;
+
+    if(document.getElementById(checker2).childElementCount === 0 && document.getElementById(checker3).childElementCount === 0 && document.getElementById(checker4).childElementCount === 0){
+
+        return console.log('Not Valid');
+    }
+    else {
+        horizontal(id);
+        vertical(id);
+        
+    }
+}
+
+function horizontal(id) {
+    value = +id.substring(5) - 15;
+    if(value < 1){
+        id = `boxId${value}`;
+        return gettingValue(id);
+    }
+    if(document.getElementById(id).childElementCount === 0){
+        return gettingValue(id);
+    }
+
+    else{
+        id = `boxId${value}`;
+
+        return horizontal(id);
+    }  
+}
+let valuesP
+let word = '';
+function gettingValue (id){
+    valuesP = +id.substring(5) + 15;
+    id = `boxId${valuesP}`;
     
-// })
+
+    if( valuesP > 225 || document.getElementById(id).childElementCount === 0){
+        return console.log(word);
+    }
+    else{
+        word = word+document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        return gettingValue(id);
+    }
+}
+
+let word2 = '';
+function vertical (id){
+    let value = +id.substring(5) - 1;
+    if(value === 1){
+        value = value - 1;
+        id = `boxId${value}`;
+        return verticalWord(id);
+    }
+    if(document.getElementById(id).childElementCount === 0){
+        return verticalWord(id);
+    }
+
+    else{
+        id = `boxId${value}`;
+        return vertical(id);
+    }
+}
+
+function verticalWord(id){
+    let value = +id.substring(5) + 1;
+    id = `boxId${value}`;
+    if(value > 225 || document.getElementById(id).childElementCount === 0){
+        return console.log(word2);
+    }
+
+    else{
+        word2 = word2 + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        return verticalWord(id);
+    }
+}
+
+let selectedpoint = [];
+
+function gettingwork(id){
+    let value = +id.substring(5);
+    selectedpoint.push(value);
+    selectedpoint.sort(function(a, b){return a - b});
+    let happy = selectedpoint.every(tester);
+    let happy2 = selectedpoint.every(tester2);
+   if(happy === true){
+        horizontalWordsforVertical();
+       return verticalPlay(id);
+   }
+   else if(happy2 === true){
+       return horizon(id);  
+   }
+
+}
+
+let tobiI = 1;
+function tester(value){
+    if(selectedpoint.length === 1){
+        let id = `boxId${value}`;
+        return checker(id);
+    }
+    if(value === selectedpoint[selectedpoint.length - 1]){
+        let checker = value - selectedpoint[selectedpoint.length - 2];
+        return checker === 15;
+    }
+    if(tobiI < selectedpoint.length){
+        let checker = selectedpoint[tobiI] - value;
+        tobiI += 1;
+        return checker === 15;
+    }
+}
+let tobiI2 = 1;
+function tester2(value){
+    if(selectedpoint.length === 1){
+        return console.log("happy");
+    }
+    if(value === selectedpoint[selectedpoint.length - 1]){
+       let checker = value - selectedpoint[selectedpoint.length - 2];
+        return checker === 1;
+    }
+    if(tobiI2 < selectedpoint.length){
+        let checker = selectedpoint[tobiI2] - value;
+        tobiI2 += 1;
+        return checker === 1;
+    }
+}
+
+function verticalPlay(id){
+    let idHolder = +id.substring(5) - 15;
+    id = `boxId${idHolder}`;
+    if(document.getElementById(id).childElementCount === 0){
+        return verticalPlayWord(id);
+    }
+    else{
+        return verticalPlay(id);
+    }
+}
+
+let playedWords = [];
+
+function verticalPlayWord(id){
+    let idHolder = +id.substring(5) + 15;
+    id = `boxId${idHolder}`;
+    if(document.getElementById(id).childElementCount === 0){
+        playedWords.push(word2);
+        return console.log(playedWords);
+    }
+    else{
+        word2 = word2 + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        return verticalPlayWord(id);
+    }
+}
+
+function horizontalWordsforVertical(){
+    selectedpoint.forEach((value) => {
+        wordCheck = '';
+        let id = `boxId${value}`;
+        return horizon(id);
+    })
+}
+
+function horizon(id){
+    let idHolder = +id.substring(5) - 1;
+    id = `boxId${idHolder}`;
+    if(document.getElementById(id).childElementCount === 0){
+        return horizonWord(id);
+    }
+    else{
+        horizon(id);
+    }
+}
+let wordCheck = '';
+function horizonWord(id){
+    let idHolder = +id.substring(5) + 1;
+    id = `boxId${idHolder}`;
+    if(document.getElementById(id).childElementCount === 0){
+        if(wordCheck.length === 1){
+            wordCheck = '';
+        }
+        else{
+            playedWords.push(wordCheck);
+            console.log(playedWords);
+        }
+    }
+    else{
+        wordCheck = wordCheck + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        return horizonWord(id);
+    }
+}
+
+function verticalTobi(){
+    selectedpoint.forEach((value) => {
+        wordCheck = '';
+        let id = `boxId${value}`;
+        return verticalPlay(id);
+    })
+}
 

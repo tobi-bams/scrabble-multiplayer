@@ -26,6 +26,7 @@ main{
     align-items: center;
     background-color: chocolate;
     color: black;
+    padding: 0.2em; 
 }
 
 .letters2{
@@ -35,16 +36,22 @@ main{
     border: none;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: chocolate;
     color: black;
-    padding: 0.5em;
+    padding: 0.2em;
+}
+
+.letters1 p, .letters2 p{
+    margin-left: auto;
 }
 
 small{
     justify-self: flex-end;
     align-self: flex-end;
+    margin-left: auto;
+    font-size: 10px;
 }
 
 aside{
@@ -81,9 +88,52 @@ aside{
 
 #racket1{
     height: 100%;
-    width: 100%;
+    width: 50%;
 }
 #racket2{
     height: 100%;
-    width: 100%;
+    width: 50%;
+}
+
+h1{
+    color: black;
+}
+
+#blankLetter{
+    color: black;
+    position: absolute;
+    height: 50%; 
+    width: 30%;
+    display: none;
+    grid-template-columns: repeat(6, 1fr);
+    /* margin-right: 40%;
+    margin-left: 40%; */
+    grid-gap: 0em;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    /* margin-top: 15%; */
+    /* margin-bottom: 20%; */
+    background-color: white;
+    padding: 2em;
+    top: 23%;
+    left: 33%;
+    right: 35%;
+}
+
+.letterFill{
+    height: 2.3em;
+    width: 2.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: chocolate;
+    color: black;
+    padding: 0.2em;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+.letterFill:hover{
+    box-shadow: 2px 2px chocolate;
 }
