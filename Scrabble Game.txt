@@ -25,3 +25,4 @@ Issues
 13. Implementing a function that makes sure player A does not exchange or get a tile from Player B. = Green
 14. Making sure that the tile dont over lap on each other either in the board or on the rack.
 15. Making provision for users to be able to select a new letter for a blank letter tile.
+16. Making sure that new played letters are played against an already existed letters that was played earlier. = Green
