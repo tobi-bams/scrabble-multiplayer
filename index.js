@@ -15,9 +15,6 @@ let player2 = document.getElementById('player2');
 let player1ScoreCounter;
 let player2ScoreCounter;
 
-let player1ScoreArray = [];
-let player2ScoreArray = [];
-
 let player1ScoreDisplay = 0;
 let player2ScoreDisplay = 0;
 
@@ -126,17 +123,6 @@ boxes.forEach(box => {
         evt.target.appendChild(document.getElementById(id));
         console.log(evt.target.id);
         
-        // document.getElementById(id).setAttribute("draggable", "false");
-        // console.log(+document.getElementById(id).childNodes[1].textContent);
-        // if(document.getElementById(id).className === "letters1"){
-        //     player1ScoreArray.push(+document.getElementById(id).childNodes[1].textContent);
-        // }
-        // if(document.getElementById(id).className === "letters2"){
-        //     player2ScoreArray.push(+document.getElementById(id).childNodes[1].textContent);
-        // }
-        // if(box.className === "box DL"){
-        //     document.getElementById(id).childNodes[1].textContent = +document.getElementById(id).childNodes[1].textContent * 2;
-        // }
         if(document.getElementById(id).childNodes[0].textContent === ""){
             console.log("happy");
             blankLetterDiv.style.display = "grid";
@@ -173,7 +159,10 @@ function leaveFuntion(id){
     let value = +id.substring(5);
     if(selectedpoint.includes(value)){
         let index = selectedpoint.indexOf(value);
-        selectedpoint.splice(index, 1);
+        let splicedId = selectedpoint.splice(index, 1);
+        let removeId = `boxId${splicedId[0]}`;
+        let removedChild = document.getElementById(removeId);
+        removedChild.innerHTML= "";
         console.log(selectedpoint);
         wordCheck = '';
         word = '';
@@ -279,55 +268,9 @@ gettingLetters2();
 let firstRow = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 let lastRow = [211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225];
 
-function horizontal(id) {
-    value = +id.substring(5) - 15;
-    if(value < 1){
-        id = `boxId${value}`;
-        return gettingValue(id);
-    }
-    if(document.getElementById(id).childElementCount === 0){
-        return gettingValue(id);
-    }
-
-    else{
-        id = `boxId${value}`;
-
-        return horizontal(id);
-    }  
-}
-let valuesP
 let word = '';
-function gettingValue (id){
-    valuesP = +id.substring(5) + 15;
-    id = `boxId${valuesP}`;
-    
-
-    if( valuesP > 225 || document.getElementById(id).childElementCount === 0){
-        return console.log(word);
-    }
-    else{
-        word = word+document.getElementById(id).childNodes[0].childNodes[0].textContent;
-        return gettingValue(id);
-    }
-}
 
 let word2 = '';
-function vertical (id){
-    let value = +id.substring(5) - 1;
-    if(value === 1){
-        value = value - 1;
-        id = `boxId${value}`;
-        return verticalWord(id);
-    }
-    if(document.getElementById(id).childElementCount === 0){
-        return verticalWord(id);
-    }
-
-    else{
-        id = `boxId${value}`;
-        return vertical(id);
-    }
-}
 
 let selectedpoint = [];
 
@@ -354,7 +297,8 @@ let playedwordsID = [];
 function verticalPlay(id){
     let idHolder = +id.substring(5) - 15;
     id = `boxId${idHolder}`;
-    if(document.getElementById(id).childElementCount === 0){
+   
+    if(idHolder < 1 || document.getElementById(id).childElementCount === 0){
         return verticalPlayWord(id);
     }
     else{
@@ -367,7 +311,7 @@ let playedWords = [];
 function verticalPlayWord(id){
     let idHolder = +id.substring(5) + 15;
     id = `boxId${idHolder}`;
-    if(document.getElementById(id).childElementCount === 0){
+    if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
         let checkingvertical = selectedpoint.every(tester);
         let testers = playedwordsID.some(tester3);
         if(checkingvertical === true && (playedTiles.length === 0 || testers === true)){
@@ -385,7 +329,7 @@ let playedwordsID2 = [];
 function horizontalPlay(id){
     let idHolder = +id.substring(5) - 1;
     id = `boxId${idHolder}`;
-    if(document.getElementById(id).childElementCount === 0){
+    if(idHolder < 1 || document.getElementById(id).childElementCount === 0){
         return horizonWord2(id);
     }
     else{
@@ -396,7 +340,7 @@ let wordCheck = '';
 function horizonWord2(id){
     let idHolder = +id.substring(5) + 1;
     id = `boxId${idHolder}`;
-    if(document.getElementById(id).childElementCount === 0){
+    if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
        let checker2 = selectedpoint.every(tester2);
        if(checker2 === true && playedwordsID2.length > 1 && selectedpoint.length > 1){
            return horizontalMainWord();
@@ -406,14 +350,6 @@ function horizonWord2(id){
         playedwordsID2.push(idHolder);
         return horizonWord2(id);
     }
-}
-
-function verticalTobi(){
-    selectedpoint.forEach((value) => {
-        wordCheck = '';
-        let id = `boxId${value}`;
-        return verticalPlay(id);
-    })
 }
 
 function gettingMainword(){
@@ -441,7 +377,7 @@ function gettingHorizonalWordForVerticalPlay(id){
 function horizonForVertical(id){
     let idHolder = +id.substring(5) - 1;
     id = `boxId${idHolder}`;
-    if(document.getElementById(id).childElementCount === 0){
+    if(idHolder < 1 || document.getElementById(id).childElementCount === 0){
         return horizonWord(id);
     }
     else{
@@ -451,7 +387,7 @@ function horizonForVertical(id){
 function horizonWord(id){
     let idHolder = +id.substring(5) + 1;
     id = `boxId${idHolder}`;
-    if(document.getElementById(id).childElementCount === 0){
+    if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
         if(wordCheck.length === 1){
             wordCheck = '';
         }
@@ -483,7 +419,7 @@ function horizontalMainWord(){
 function verticalwordforHorizontalPlay(id){
     let idHolder = +id.substring(5) - 15;
     id = `boxId${idHolder}`;
-    if(document.getElementById(id).childElementCount === 0){
+    if(idHolder < 1 || document.getElementById(id).childElementCount === 0){
         return verticalWordforHorizontal(id)
     }
     else{
@@ -494,7 +430,7 @@ function verticalwordforHorizontalPlay(id){
 function verticalWordforHorizontal(id){
     let idHolder = +id.substring(5) + 15;
     id = `boxId${idHolder}`;
-    if(document.getElementById(id).childElementCount === 0){
+    if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
         if(wordCheck.length > 1){
             playedWords.push(wordCheck);
         }
