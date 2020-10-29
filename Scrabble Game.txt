@@ -21,8 +21,9 @@ Issues
 9. implementing that while player A is playing Player B must wait and can't play at the momment he can only shuffle his card (status) = Orange.
 10. Implementing a function that calculates for double word, triple word, double letter, tripple letter.
 11. Implementing a function that ensures that Player 1 always starts his word from the center (status) = Orange.
-12. Implementing a proper reading of each new word spelt.
-13. Implementing a function that makes sure player A does not exchange or get a tile from Player B. = Green
+12. Implementing a proper reading of each new word spelt (status) = Green.
+13. Implementing a function that makes sure player A does not exchange or get a tile from Player B.(status) = Green
 14. Making sure that the tile dont over lap on each other either in the board or on the rack.
 15. Making provision for users to be able to select a new letter for a blank letter tile.
-16. Making sure that new played letters are played against an already existed letters that was played earlier. = Green
+16. Making sure that new played letters are played against an already existed letters that was played earlier. (status) = Green
+17. Making sure the score of each word are implemented properly. (status) = 

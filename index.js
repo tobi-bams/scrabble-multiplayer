@@ -138,9 +138,8 @@ boxes.forEach(box => {
         playedWords = [];
         playedwordsID = [];
         playedwordsID2 = [];
-        word = '';
-        word2 = '';
-        wordCheck = '';
+        word = {word: "", point: 0};
+        wordCheck = {word: "", point: 0};
         let ids = evt.target.id;
         let value = +evt.target.id.substring(5);
         selectedpoint.push(value);
@@ -164,8 +163,8 @@ function leaveFuntion(id){
         let removedChild = document.getElementById(removeId);
         removedChild.innerHTML= "";
         console.log(selectedpoint);
-        wordCheck = '';
-        word = '';
+        wordCheck = {word: "", point: 0};
+        word = {word: "", point: 0};
         playedWords = [];
         playedwordsID = [];
         playedwordsID2 = [];
@@ -270,8 +269,6 @@ let lastRow = [211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 
 
 let word = '';
 
-let word2 = '';
-
 let selectedpoint = [];
 
 function gettingwork(id){
@@ -289,7 +286,31 @@ function tester2(value){
 }
 
 function tester3(value){
-    return playedTiles.includes(value);
+    let valuePlus = value + 1;
+    let valueMinus = value - 1;
+    if(playedTiles.includes(valuePlus)){
+        return playedTiles.includes(valuePlus);
+    }
+    else if(playedTiles.includes(valueMinus)){
+        return playedTiles.includes(valueMinus)
+    }
+    else{
+        return playedTiles.includes(value);
+    }
+}
+
+function tester4(value){
+    let valuePlus = value + 15;
+    let valueMinus = value - 15;
+    if(playedTiles.includes(valuePlus)){
+        return playedTiles.includes(valuePlus);
+    }
+    else if(playedTiles.includes(valueMinus)){
+        return playedTiles.includes(valueMinus);
+    }
+    else {
+        return playedTiles.includes(value);
+    }
 }
 
 
@@ -336,13 +357,15 @@ function horizontalPlay(id){
         horizontalPlay(id);
     }
 }
-let wordCheck = '';
+let wordCheck = {word: "", point: 0};
 function horizonWord2(id){
     let idHolder = +id.substring(5) + 1;
     id = `boxId${idHolder}`;
     if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
        let checker2 = selectedpoint.every(tester2);
-       if(checker2 === true && playedwordsID2.length > 1 && selectedpoint.length > 1){
+       let tester = playedwordsID2.some(tester4);
+       if(checker2 === true && playedwordsID2.length > 1 && selectedpoint.length > 1 && (playedTiles.length === 0 || tester === true)){
+           console.log("Happy");
            return horizontalMainWord();
        }
     }
@@ -353,17 +376,18 @@ function horizonWord2(id){
 }
 
 function gettingMainword(){
-    let word = '';
+    let word = {word: "", point: 0};
     playedwordsID.forEach((value) => {
         let id = `boxId${value}`;
-        word = word + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        word.word = word.word + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        word.point = word.point + (+document.getElementById(id).childNodes[0].childNodes[1].textContent);
     })
-    if(word.length > 1){
+    if(word.word.length > 1){
         playedWords.push(word);
     }
 
     selectedpoint.forEach((value) => {
-        wordCheck = '';
+        wordCheck = {word: "", point: 0};
         let id = `boxId${value}`;
         gettingHorizonalWordForVerticalPlay(id);
     })
@@ -388,28 +412,27 @@ function horizonWord(id){
     let idHolder = +id.substring(5) + 1;
     id = `boxId${idHolder}`;
     if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
-        if(wordCheck.length === 1){
-            wordCheck = '';
-        }
-        else{
+        if(wordCheck.word.length > 1){
             playedWords.push(wordCheck);
         }
     }
     else{
-        wordCheck = wordCheck + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        wordCheck.word = wordCheck.word + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        wordCheck.point = wordCheck.point + (+document.getElementById(id).childNodes[0].childNodes[1].textContent)
         return horizonWord(id);
     }
 }
 
 function horizontalMainWord(){
-    let word = '';
+    let word = {word: "", point: 0};
     playedwordsID2.forEach((value) => {
         let id = `boxId${value}`;
-        word = word + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        word.word = word.word + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        word.point = word.point + (+document.getElementById(id).childNodes[0].childNodes[1].textContent)
     })
     playedWords.push(word);
     selectedpoint.forEach((value) => {
-        wordCheck = '';
+        wordCheck = {word: "", point: 0};
         let id = `boxId${value}`;
         verticalwordforHorizontalPlay(id);
     })
@@ -431,13 +454,14 @@ function verticalWordforHorizontal(id){
     let idHolder = +id.substring(5) + 15;
     id = `boxId${idHolder}`;
     if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
-        if(wordCheck.length > 1){
+        if(wordCheck.word.length > 1){
             playedWords.push(wordCheck);
         }
     }
 
     else{
-        wordCheck = wordCheck + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        wordCheck.word = wordCheck.word + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+        wordCheck.point = wordCheck.point + (+document.getElementById(id).childNodes[0].childNodes[1].textContent)
         return verticalWordforHorizontal(id);
     }
 }
