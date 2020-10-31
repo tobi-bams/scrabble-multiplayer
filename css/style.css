@@ -137,3 +137,12 @@ h1{
 .letterFill:hover{
     box-shadow: 2px 2px chocolate;
 }
+
+.counterContainer{
+    height: 5em;
+    width: 5em;
+    border-radius: 5px;
+    border: 2px solid black;
+    text-align: center;
+    color: black;
+}
