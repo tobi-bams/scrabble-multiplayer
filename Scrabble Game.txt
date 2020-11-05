@@ -17,13 +17,13 @@ Issues
 5. Having access to the letter and number value of each letter (status) = Green.
 6. Automating the random selection of letters from the array of letters (status) = Green.
 7. Making the board a droppable environment (status) = Green.
-8. making sure that once a letter is dropped and played with a right word the letter is no longer draggable
+8. making sure that once a letter is dropped and played with a right word the letter is no longer draggable = Green
 9. implementing that while player A is playing Player B must wait and can't play at the momment he can only shuffle his card (status) = Orange.
-10. Implementing a function that calculates for double word, triple word, double letter, tripple letter.
-11. Implementing a function that ensures that Player 1 always starts his word from the center (status) = Orange.
+10. Implementing a function that calculates for double word, triple word, double letter, tripple letter. (status) = Green.
+11. Implementing a function that ensures that Player 1 always starts his word from the center (status) = Green.
 12. Implementing a proper reading of each new word spelt (status) = Green.
 13. Implementing a function that makes sure player A does not exchange or get a tile from Player B.(status) = Green
 14. Making sure that the tile dont over lap on each other either in the board or on the rack.
-15. Making provision for users to be able to select a new letter for a blank letter tile.
+15. Making provision for users to be able to select a new letter for a blank letter tile. = (Orange)
 16. Making sure that new played letters are played against an already existed letters that was played earlier. (status) = Green
-17. Making sure the score of each word are implemented properly. (status) = 
+17. Making sure the score of each word are implemented properly. (status) = Green.

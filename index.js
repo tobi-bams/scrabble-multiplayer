@@ -112,17 +112,34 @@ boxes.forEach(box => {
         console.log(evt.target.id);
         
         if(document.getElementById(id).childNodes[0].textContent === ""){
-            console.log("happy");
             blankLetterDiv.style.display = "grid";
-            // fillEmptyTile();
             emptyTile.forEach((tile) => {
                 tile.addEventListener('click', (event) => {
                     document.getElementById(id).childNodes[0].textContent = event.target.textContent;
                     blankLetterDiv.style.display = "none";
+                    words = [];
+                    currentplayedWordScore = 0;
+                    counterholder.textContent = currentplayedWordScore;
+                    playedWords = [];
+                    playedwordsID = [];
+                    playedwordsID2 = [];
+                    word = {word: "", point: 0};
+                    wordCheck = {word: "", point: 0};
+                    let ids = evt.target.id;
+                    let value = +evt.target.id.substring(5);
+                    selectedpoint.push(value);
+                    selectedpoint.sort(function(a, b){return a - b});
+                    gettingwork(evt.target.id);
+                    // console.log(selectedpoint);
+                    document.getElementById(ids).addEventListener("dragleave", (ev) => {
+                        let id = evt.target.id;
+                        leaveFuntion(id);
+                    })
                 })
             })
         }
-        words = [];
+        else{
+            words = [];
         currentplayedWordScore = 0;
         counterholder.textContent = currentplayedWordScore;
         playedWords = [];
@@ -140,6 +157,7 @@ boxes.forEach(box => {
             let id = evt.target.id;
             leaveFuntion(id);
         })
+        }  
     })
 
 });
@@ -149,9 +167,6 @@ function leaveFuntion(id){
     if(selectedpoint.includes(value)){
         let index = selectedpoint.indexOf(value);
         let splicedId = selectedpoint.splice(index, 1);
-        let removeId = `boxId${splicedId[0]}`;
-        let removedChild = document.getElementById(removeId);
-        removedChild.innerHTML= "";
         console.log(selectedpoint);
         wordCheck = {word: "", point: 0};
         word = {word: "", point: 0};
@@ -236,6 +251,7 @@ function gettingLetters1(){
             }
         }
     }
+    notification();
 }
 
 gettingLetters1();
@@ -250,11 +266,14 @@ function gettingLetters2(){
             }
         }
     }
+    notification();
 }
 
 gettingLetters2();
 
 let word = '';
+let rightBoardPath = [15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225];
+let leftBoardPath = [16, 31, 46, 61, 76, 91, 106, 121, 136, 151, 166, 181, 196, 211];
 
 let selectedpoint = [];
 
@@ -275,10 +294,10 @@ function tester2(value){
 function tester3(value){
     let valuePlus = value + 1;
     let valueMinus = value - 1;
-    if(playedTiles.includes(valuePlus)){
+    if(playedTiles.includes(valuePlus) && !rightBoardPath.includes(value)){
         return playedTiles.includes(valuePlus);
     }
-    else if(playedTiles.includes(valueMinus)){
+    else if(playedTiles.includes(valueMinus) && !leftBoardPath.includes(value)){
         return playedTiles.includes(valueMinus)
     }
     else{
@@ -335,7 +354,13 @@ function verticalPlayWord(id){
 }
 let playedwordsID2 = [];
 function horizontalPlay(id){
-    let idHolder = +id.substring(5) - 1;
+    let idHolder = +id.substring(5);
+    if(leftBoardPath.includes(idHolder)){
+        idHolder = idHolder - 1;
+        id = `boxId${idHolder}`;
+        return horizonWord2(id);
+    }
+    idHolder = idHolder - 1;
     id = `boxId${idHolder}`;
     if(idHolder < 1 || document.getElementById(id).childElementCount === 0){
         return horizonWord2(id);
@@ -354,6 +379,14 @@ function horizonWord2(id){
        if(checker2 === true && playedwordsID2.length > 1 && selectedpoint.length > 1 && (playedTiles.length === 0 || tester === true)){
            return horizontalMainWord();
        }
+    }
+    else if(rightBoardPath.includes(idHolder)){
+        playedwordsID2.push(idHolder);
+        let checker2 = selectedpoint.every(tester2);
+        let tester = playedwordsID2.some(tester4);
+        if(checker2 === true && playedwordsID2.length > 1 && selectedpoint.length > 1 && (playedTiles.length === 0 || tester === true)){
+            return horizontalMainWord();
+        }
     }
     else{
         playedwordsID2.push(idHolder);
@@ -407,7 +440,13 @@ function gettingHorizonalWordForVerticalPlay(id){
 }
 
 function horizonForVertical(id){
-    let idHolder = +id.substring(5) - 1;
+    let idHolder = +id.substring(5);
+    if(leftBoardPath.includes(idHolder)){
+        idHolder = idHolder - 1;
+        id = `boxId${idHolder}`;
+        return horizonWord(id);
+    }
+    idHolder = idHolder - 1;
     id = `boxId${idHolder}`;
     if(idHolder < 1 || document.getElementById(id).childElementCount === 0){
         return horizonWord(id);
@@ -423,8 +462,32 @@ function horizonWord(id){
     if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
         if(wordCheck.word.length > 1){
             wordCheck.point = wordCheck.point * multiplier2;
-            playedWords.push(wordCheck);
             multiplier2 = 1;
+            return playedWords.push(wordCheck);
+        }
+    }
+    else if(rightBoardPath.includes(idHolder)){
+        if(wordCheck.word.length > 1){
+
+            if(document.getElementById(id).className === "box DW" && selectedpoint.includes(idHolder)){
+                multiplier2 = 2;
+            }
+            if(document.getElementById(id).className === "box TW" && selectedpoint.includes(idHolder)){
+                multiplier2 = 3;
+            }
+            if(document.getElementById(id).className === "box DL" && selectedpoint.includes(idHolder)){
+                wordCheck.point = wordCheck.point + ((+document.getElementById(id).childNodes[0].childNodes[1].textContent) * 2);
+            }
+            else if(document.getElementById(id).className === "box TL" && selectedpoint.includes(idHolder)){
+                wordCheck.point = wordCheck.point + ((+document.getElementById(id).childNodes[0].childNodes[1].textContent) * 3);
+            }
+            else{
+                wordCheck.point = wordCheck.point + (+document.getElementById(id).childNodes[0].childNodes[1].textContent);
+            }
+            wordCheck.word = wordCheck.word + document.getElementById(id).childNodes[0].childNodes[0].textContent;
+            wordCheck.point = wordCheck.point * multiplier2;
+            multiplier2 = 1;
+            return playedWords.push(wordCheck);
         }
     }
     else{
@@ -450,14 +513,15 @@ function horizonWord(id){
 
 function horizontalMainWord(){
     let word = {word: "", point: 0};
-    let multiplier = 1;
+    let multiplier4 = 1;
+    console.log(playedwordsID2);
     playedwordsID2.forEach((value) => {
         let id = `boxId${value}`;
         if(document.getElementById(id).className === "box DW" && selectedpoint.includes(value)){
-            multiplier = 2;
+            multiplier4 = 2;
         }
         if(document.getElementById(id).className === "box TW" && selectedpoint.includes(value)){
-            multiplier = 3;
+            multiplier4 = 3;
         }
         if(document.getElementById(id).className === "box DL" && selectedpoint.includes(value)){
             word.point = word.point + ((+document.getElementById(id).childNodes[0].childNodes[1].textContent) * 2);
@@ -470,9 +534,9 @@ function horizontalMainWord(){
         }
         word.word = word.word + document.getElementById(id).childNodes[0].childNodes[0].textContent;
     })
-    word.point = word.point * multiplier;
+    word.point = word.point * multiplier4;
     playedWords.push(word);
-    multiplier = 1;
+    multiplier4 = 1;
     selectedpoint.forEach((value) => {
         wordCheck = {word: "", point: 0};
         let id = `boxId${value}`;
@@ -496,23 +560,24 @@ function verticalwordforHorizontalPlay(id){
     }
 }
 
+let multiplier3 = 1;
 function verticalWordforHorizontal(id){
     let idHolder = +id.substring(5) + 15;
     id = `boxId${idHolder}`;
     if(idHolder > 225 || document.getElementById(id).childElementCount === 0){
         if(wordCheck.word.length > 1){
-            wordCheck.point = wordCheck.point * multiplier2;
+            wordCheck.point = wordCheck.point * multiplier3;
             playedWords.push(wordCheck);
-            multiplier2 = 1;
+            multiplier3 = 1;
         }
     }
 
     else{
         if(document.getElementById(id).className === "box DW" && selectedpoint.includes(idHolder)){
-            multiplier2 = 2;
+            multiplier3 = 2;
         }
         if(document.getElementById(id).className === "box TW" && selectedpoint.includes(idHolder)){
-            multiplier2 = 3;
+            multiplier3 = 3;
         }
         if(document.getElementById(id).className === "box DL" && selectedpoint.includes(idHolder)){
             wordCheck.point = wordCheck.point + ((+document.getElementById(id).childNodes[0].childNodes[1].textContent) * 2);
@@ -536,6 +601,12 @@ function storePlayedTiles(){
     currentplayedWordScore = 0;
     counterholder.textContent = currentplayedWordScore;
     return console.log(playedTiles);
+}
+
+function notification(){
+    if(tiles.length < 5){
+        alert(`There are only ${tiles.length} tiles remaining.`);
+    }
 }
 
 
