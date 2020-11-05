@@ -4,14 +4,18 @@ body{
     font-family: poppins;
     color: white;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 main{
-    /* margin-left: 30%;
-    margin-right: 30%; */
     margin-top: 2em;
     display: grid;
     grid-template-columns: repeat(15, 1fr);
+    justify-content: center;
+    align-items: center;
     width: 40%;
 }
 
@@ -56,8 +60,14 @@ small{
 
 aside{
     display: flex;
-    width: 30%;
+    flex-direction: column;
+    width: 100%;
     margin-left: 2em;
+}
+.racket{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
 }
 
 .box{
@@ -86,14 +96,14 @@ aside{
     background-color: rgb(132, 0, 255);
 }
 
-#racket1{
+/* #racket1{
     height: 100%;
     width: 50%;
 }
 #racket2{
     height: 100%;
     width: 50%;
-}
+} */
 
 h1{
     color: black;
@@ -139,10 +149,12 @@ h1{
 }
 
 .counterContainer{
-    height: 5em;
-    width: 5em;
+    height: 3em;
+    width: 3em;
     border-radius: 5px;
     border: 2px solid black;
     text-align: center;
     color: black;
+    position: absolute;
+    bottom: 90%;
 }
