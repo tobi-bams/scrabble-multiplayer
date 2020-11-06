@@ -36,7 +36,7 @@ player2.disabled = true;
 
 player1.addEventListener("click", () => {
     
-    if(document.getElementById("boxId113").childElementCount !== 0){
+    if(document.getElementById("boxId113").childElementCount !== 0 && currentplayedWordScore !== 0){
         gettingLetters1();
         player2.disabled = false;
         player1.disabled = true;
@@ -50,28 +50,32 @@ player1.addEventListener("click", () => {
         storePlayedTiles(); 
         
     }
-
-    else {
-        console.log("You must start playing your tiles from the center");
+    else if(document.getElementById("boxId113").childElementCount === 0){
         alert('You must start playing your tiles from the center');
     }
-  
-
+    else{
+        alert('Ops!!!............. It seems you are disobeying some of scrables fundamental rules.....\nPlease make neccesary Corrections and try again');
+    }
 })
 
 player2.addEventListener("click", () => {
-    gettingLetters2();
-    player2.disabled = true;
-    player1.disabled = false;
-    player2ScoreDisplay += currentplayedWordScore;
-    boxes.forEach((box) => {
-        if(box.childElementCount !== 0){
-            box.firstChild.setAttribute("draggable", "false");
-           
-        }
-    })
-    storePlayedTiles();
-    score2.textContent = player2ScoreDisplay;
+    if(currentplayedWordScore !== 0){
+        gettingLetters2();
+        player2.disabled = true;
+        player1.disabled = false;
+        player2ScoreDisplay += currentplayedWordScore;
+        boxes.forEach((box) => {
+            if(box.childElementCount !== 0){
+                box.firstChild.setAttribute("draggable", "false");
+               
+            }
+        })
+        storePlayedTiles();
+        score2.textContent = player2ScoreDisplay;
+    }
+    else{
+        alert('Ops!!!............. It seems you are disobeying some of scrables fundamental rules.....\nPlease make neccesary Corrections and try again');
+    }
 })
 
 racket1.addEventListener("dragover", (event) => {
@@ -140,20 +144,19 @@ boxes.forEach(box => {
         }
         else{
             words = [];
-        currentplayedWordScore = 0;
-        counterholder.textContent = currentplayedWordScore;
-        playedWords = [];
-        playedwordsID = [];
-        playedwordsID2 = [];
-        word = {word: "", point: 0};
-        wordCheck = {word: "", point: 0};
-        let ids = evt.target.id;
-        let value = +evt.target.id.substring(5);
-        selectedpoint.push(value);
-        selectedpoint.sort(function(a, b){return a - b});
-        gettingwork(evt.target.id);
-        // console.log(selectedpoint);
-        document.getElementById(ids).addEventListener("dragleave", (ev) => {
+            currentplayedWordScore = 0;
+            counterholder.textContent = currentplayedWordScore;
+            playedWords = [];
+            playedwordsID = [];
+            playedwordsID2 = [];
+            word = {word: "", point: 0};
+            wordCheck = {word: "", point: 0};
+            let ids = evt.target.id;
+            let value = +evt.target.id.substring(5);
+            selectedpoint.push(value);
+            selectedpoint.sort(function(a, b){return a - b});
+            gettingwork(evt.target.id);
+            document.getElementById(ids).addEventListener("dragleave", (ev) => {
             let id = evt.target.id;
             leaveFuntion(id);
         })
@@ -282,11 +285,9 @@ function gettingwork(id){
     horizontalPlay(id);
 }
 
-let tobiI = 1;
 function tester(value){
    return playedwordsID.includes(value);
 }
-let tobiI2 = 1;
 function tester2(value){
    return playedwordsID2.includes(value);
 }
@@ -319,8 +320,8 @@ function tester4(value){
     }
 }
 
-
 let playedwordsID = [];
+
 function verticalPlay(id){
     let idHolder = +id.substring(5) - 15;
     id = `boxId${idHolder}`;
@@ -343,7 +344,6 @@ function verticalPlayWord(id){
         let testers = playedwordsID.some(tester3);
         if(checkingvertical === true && (playedTiles.length === 0 || testers === true)){
             return gettingMainword();
-            
         }
     }
     else{
