@@ -59,6 +59,7 @@ small{
 }
 
 aside{
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -67,7 +68,27 @@ aside{
 .racket{
     display: flex;
     justify-content: space-around;
+    height: 10em;
     width: 80%;
+    margin-top: 3em;
+}
+
+.button{
+    padding: 1px 3em;
+    height: 2.5em;
+    border: none;
+    outline: none;
+    background-color: rgb(255, 172, 113);
+    border-radius: 10px;
+    color: white;
+}
+
+.button:hover{
+    background-color: rgb(250, 152, 82);
+}
+
+.button:disabled{
+    background-color: whitesmoke;
 }
 
 .box{
@@ -97,12 +118,12 @@ aside{
 }
 
 /* #racket1{
-    height: 100%;
-    width: 50%;
+    height: 10em;
+    width: 80%;
 }
 #racket2{
-    height: 100%;
-    width: 50%;
+    height: 10em;
+    width: 80%;
 } */
 
 h1{
@@ -157,4 +178,15 @@ h1{
     color: black;
     position: absolute;
     bottom: 90%;
+}
+
+.scoreContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+h1{
+    margin: 0;
+    padding: 0;
 }
