@@ -7,332 +7,351 @@
     <title>Scrabble</title>
 </head>
 <body>
-    <aside>
-        <div class="scoreContainer">
-            <button id="player1" class="button">Play</button>
-            <h1 id="score1">0</h1>
-        </div>
-        <div id="racket1" class="racket">
-        </div> 
-    </aside>
-    <div class="counterContainer">
-        <h2 id="currentplayedcounter"></h2>
-    </div>
     <main>
-        <div class="box TW" draggable="true"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TW"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box TW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TW"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box DL"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box TW"></div>
+        <aside>
+            <div class="scoreContainer">
+                <button id="player1" class="button">Play</button>
+                <h1 id="score1">0</h1>
+            </div>
+            <div id="racket1" class="racket">
+            </div> 
+        </aside>
+        <div class="counterContainer">
+            <h2 id="currentplayedcounter"></h2>
+        </div>
+        <div class="board">
+            <div class="box TW" draggable="true"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TW"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box TW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TW"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box DL"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box TW"></div>
+        </div>
+        <aside>
+            <div class="scoreContainer">
+                <button id="player2" class="button" >Play</button>
+                <h1 id="score2">0</h1>
+            </div>
+            <div id="racket2" class="racket">
+            </div>
+        </aside>
+        <aside id="blankLetter">
+            <div class="letterFill">
+                <p>A</p>
+            </div>
+            <div class="letterFill">
+                <p>B</p>
+            </div>
+            <div class="letterFill">
+                <p>C</p>
+            </div>
+            <div class="letterFill">
+                <p>D</p>
+            </div>
+            <div class="letterFill">
+                <p>E</p>
+            </div>
+            <div class="letterFill">
+                <p>F</p>
+            </div>
+            <div class="letterFill">
+                <p>G</p>
+            </div>
+            <div class="letterFill">
+                <p>H</p>
+            </div>
+            <div class="letterFill">
+                <p>I</p>
+            </div>
+            <div class="letterFill">
+                <p>J</p>
+            </div>
+            <div class="letterFill">
+                <p>K</p>
+            </div>
+            <div class="letterFill">
+                <p>L</p>
+            </div>
+            <div class="letterFill">
+                <p>M</p>
+            </div>
+            <div class="letterFill">
+                <p>N</p>
+            </div>
+            <div class="letterFill">
+                <p>O</p>
+            </div>
+            <div class="letterFill">
+                <p>P</p>
+            </div>
+            <div class="letterFill">
+                <p>Q</p>
+            </div>
+            <div class="letterFill">
+                <p>R</p>
+            </div>
+            <div class="letterFill">
+                <p>S</p>
+            </div>
+            <div class="letterFill">
+                <p>T</p>
+            </div>
+            <div class="letterFill">
+                <p>U</p>
+            </div>
+            <div class="letterFill">
+                <p>V</p>
+            </div>
+            <div class="letterFill">
+                <p>W</p>
+            </div>
+            <div class="letterFill">
+                <p>X</p>
+            </div>
+            <div class="letterFill">
+                <p>Y</p>
+            </div>
+            <div class="letterFill">
+                <p>Z</p>
+            </div>
+        </aside>
+        <div class="starterForm">
+            <form class="formBody">
+                <div>
+                    <h2 class="formHeader">Scrabble Players Info</h2>
+                </div>
+                <div class="formInput">
+                    <label for="fPlayer">First Player Name:</label>
+                    <input id="fPlayer" placeholder="First Player Name">
+                </div>
+                <div class="formInput">
+                    <label for="sPlayer">Second Player Name:</label>
+                    <input id="sPlayer" placeholder="Second Player Name">
+                </div>
+                <button class="startGame">Start Game</button>
+            </form>
+        </div>
     </main>
-    <aside>
-        <div class="scoreContainer">
-            <button id="player2" class="button" >Play</button>
-            <h1 id="score2">0</h1>
-        </div>
-        <div id="racket2" class="racket">
-        </div>
-    </aside>
-    <aside id="blankLetter">
-        <div class="letterFill">
-            <p>A</p>
-        </div>
-        <div class="letterFill">
-            <p>B</p>
-        </div>
-        <div class="letterFill">
-            <p>C</p>
-        </div>
-        <div class="letterFill">
-            <p>D</p>
-        </div>
-        <div class="letterFill">
-            <p>E</p>
-        </div>
-        <div class="letterFill">
-            <p>F</p>
-        </div>
-        <div class="letterFill">
-            <p>G</p>
-        </div>
-        <div class="letterFill">
-            <p>H</p>
-        </div>
-        <div class="letterFill">
-            <p>I</p>
-        </div>
-        <div class="letterFill">
-            <p>J</p>
-        </div>
-        <div class="letterFill">
-            <p>K</p>
-        </div>
-        <div class="letterFill">
-            <p>L</p>
-        </div>
-        <div class="letterFill">
-            <p>M</p>
-        </div>
-        <div class="letterFill">
-            <p>N</p>
-        </div>
-        <div class="letterFill">
-            <p>O</p>
-        </div>
-        <div class="letterFill">
-            <p>P</p>
-        </div>
-        <div class="letterFill">
-            <p>Q</p>
-        </div>
-        <div class="letterFill">
-            <p>R</p>
-        </div>
-        <div class="letterFill">
-            <p>S</p>
-        </div>
-        <div class="letterFill">
-            <p>T</p>
-        </div>
-        <div class="letterFill">
-            <p>U</p>
-        </div>
-        <div class="letterFill">
-            <p>V</p>
-        </div>
-        <div class="letterFill">
-            <p>W</p>
-        </div>
-        <div class="letterFill">
-            <p>X</p>
-        </div>
-        <div class="letterFill">
-            <p>Y</p>
-        </div>
-        <div class="letterFill">
-            <p>Z</p>
-        </div>
-    </aside>
+   
     <script src="./index.js"></script>
 </body>
 </html>
