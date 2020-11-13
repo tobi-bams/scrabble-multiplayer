@@ -31,6 +31,54 @@ let blankLetterDiv = document.getElementById('blankLetter');
 
 let counterholder = document.getElementById('currentplayedcounter');
 
+let startForm = document.getElementById("starterForm");
+
+let startButton = document.getElementById("startButton");
+
+
+let firstPlayer = document.getElementById("fPlayer");
+let secondPlayer = document.getElementById("sPlayer");
+let fPlayerErr = document.getElementById("fPlayerErr")
+let sPlayerErr = document.getElementById("sPlayerErr");
+let inputs = document.querySelectorAll("input");
+let starterFormContainer = document.getElementById("starterFormContainer");
+let firstPlayerContainer = document.getElementById("firstPlayerContainer");
+let secondPlayerContainer = document.getElementById("secondPlayerContainer");
+
+startButton.addEventListener("click", (evt) => {
+    evt.preventDefault();
+    if(firstPlayer.value === "" || secondPlayer.value === ""){
+        if(firstPlayer.value ===""){
+            fPlayerErr.style.display = "inline";
+            firstPlayer.style.border = "1px solid rgb(247, 110, 110)";
+        }
+        if(secondPlayer.value ===""){
+            sPlayerErr.style.display = "inline";
+            secondPlayer.style.border = "1px solid rgb(247, 110, 110)";
+        }
+    }
+    else{
+        firstPlayerContainer.textContent = firstPlayer.value;
+        secondPlayerContainer.textContent = secondPlayer.value;
+        starterFormContainer.style.display = "none";
+        console.log(`${firstPlayer.value} and ${secondPlayer.value}`);
+    }
+})
+
+// firstPlayer.previousElementSibling
+inputs.forEach((input) => {
+    input.addEventListener("input", (evt) => {
+        evt.target.previousElementSibling.style.display = "none";
+        evt.target.style.border = "1px solid rgb(196, 192, 192)";
+    })
+
+    input.addEventListener("blur", (evt) => {
+        if(evt.target.value === ""){
+            evt.target.previousElementSibling.style.display = "inline";
+            evt.target.style.border = "1px solid rgb(247, 110, 110)";
+        }
+    })
+})
 
 player2.disabled = true;
 
@@ -213,6 +261,7 @@ function selecting1(){
     letterTile.setAttribute("class", "letters1");
     let letter = document.createElement("p");
     let value = document.createElement('small');
+    value.setAttribute("class", "smallValue");
     value.textContent = check[0].value;
     letter.textContent = check[0].letter;
     letterTile.appendChild(letter);
@@ -232,6 +281,7 @@ function selecting2(){
     letterTile.setAttribute("class", "letters2");
     let letter = document.createElement("p");
     let value = document.createElement("small");
+    value.setAttribute("class", "smallValue");
     letter.textContent = check[0].letter;
     value.textContent = check[0].value;
     letterTile.appendChild(letter);

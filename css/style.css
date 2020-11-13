@@ -53,7 +53,7 @@ main{
     margin-left: auto;
 }
 
-small{
+.smallValue{
     justify-self: flex-end;
     align-self: flex-end;
     margin-left: auto;
@@ -205,7 +205,7 @@ h1{
 }
 
 .formBody{
-    height: 21em;
+    height: 23em;
     width: 30em;
     display: flex;
     flex-direction: column;
@@ -262,4 +262,13 @@ h1{
     color: white;
     font-weight: 700;
     font-size: 1em;
+}
+
+.smallErr{
+    color: rgb(247, 110, 110);
+    display: none;
+}
+
+h2{
+    color: black;
 }
