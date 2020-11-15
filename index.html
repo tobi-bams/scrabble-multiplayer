@@ -348,14 +348,36 @@
                 </div>
                 <div class="formInput">
                     <label for="sPlayer">Second Player Name:</label>
-                    <small id="sPlayerErr" class="smallErr">First Player Name Cannot be Empty</small>
+                    <small id="sPlayerErr" class="smallErr">Second Player Name Cannot be Empty</small>
                     <input id="sPlayer" placeholder="Second Player Name" name="sPlayer">
                 </div>
                 <button class="startGame" id="startButton">Start Game</button>
             </form>
         </div>
     </main>
-   
+   <div id="resultContainer">
+       <div id="resultToggleContainer">
+        <button id="resultToggle">Show Result</button>
+       </div>
+       <div id="playerTableContainer">
+           <table border="1">
+               <caption id="player1Caption" class="caption"></caption>
+               <thead>
+                   <td>WORD</td>
+                   <td>POINT</td>
+               </thead>
+               <tbody id="player1TableBody"></tbody>
+           </table>
+           <table border="1">
+            <caption id="player2Caption" class="caption"></caption>
+            <thead>
+                <td>WORD</td>
+                <td>POINT</td>
+            </thead>
+            <tbody id="player2TableBody"></tbody>
+        </table>
+       </div>
+   </div>
     <script src="./index.js"></script>
 </body>
 </html>

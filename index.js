@@ -44,7 +44,34 @@ let inputs = document.querySelectorAll("input");
 let starterFormContainer = document.getElementById("starterFormContainer");
 let firstPlayerContainer = document.getElementById("firstPlayerContainer");
 let secondPlayerContainer = document.getElementById("secondPlayerContainer");
+let firstPlayerRecord = [];
+let secondPlayerRecord = [];
 
+let player1TableBody = document.getElementById("player1TableBody");
+let player2TableBody = document.getElementById("player2TableBody");
+
+let resultContainer = document.getElementById("resultContainer");
+
+let resultToggle = document.getElementById("resultToggle");
+let playerTableContainer = document.getElementById("playerTableContainer");
+
+let player1Caption = document.getElementById("player1Caption");
+let player2Caption = document.getElementById("player2Caption");
+
+resultToggle.addEventListener("click", (evt) => {
+    if(resultToggle.textContent == "Show Result"){
+        gettingResultTable();
+        playerTableContainer.style.display = "flex";
+        resultToggle.textContent = "Close Result";
+    }
+
+    else if(resultToggle.textContent == "Close Result"){
+        playerTableContainer.style.display = "none";
+        resultToggle.textContent = "Show Result";
+    }
+    
+})
+//Validating the getting Started Form
 startButton.addEventListener("click", (evt) => {
     evt.preventDefault();
     if(firstPlayer.value === "" || secondPlayer.value === ""){
@@ -60,12 +87,13 @@ startButton.addEventListener("click", (evt) => {
     else{
         firstPlayerContainer.textContent = firstPlayer.value;
         secondPlayerContainer.textContent = secondPlayer.value;
+        player1Caption.textContent = firstPlayer.value;
+        player2Caption.textContent = secondPlayer.value;
         starterFormContainer.style.display = "none";
-        console.log(`${firstPlayer.value} and ${secondPlayer.value}`);
+        resultContainer.style.display = "flex"
     }
 })
 
-// firstPlayer.previousElementSibling
 inputs.forEach((input) => {
     input.addEventListener("input", (evt) => {
         evt.target.previousElementSibling.style.display = "none";
@@ -95,8 +123,12 @@ player1.addEventListener("click", () => {
             }
         })
         score1.textContent = player1ScoreDisplay;
-        storePlayedTiles(); 
-        
+        storePlayedTiles();
+
+        playedWords.forEach((word) => {
+            firstPlayerRecord.push(word);
+        })
+        gettingResultTable();
     }
     else if(document.getElementById("boxId113").childElementCount === 0){
         alert('You must start playing your tiles from the center');
@@ -120,6 +152,10 @@ player2.addEventListener("click", () => {
         })
         storePlayedTiles();
         score2.textContent = player2ScoreDisplay;
+        playedWords.forEach((word) => {
+            secondPlayerRecord.push(word);
+        })
+        gettingResultTable();
     }
     else{
         alert('Ops!!!............. It seems you are disobeying some of scrables fundamental rules.....\nPlease make neccesary Corrections and try again');
@@ -480,7 +516,6 @@ function gettingMainword(){
     playedWords.forEach((value) => {
         currentplayedWordScore += value.point;
     })
-    console.log(currentplayedWordScore);
     counterholder.textContent = currentplayedWordScore;
     return console.log(playedWords);
 }
@@ -660,4 +695,32 @@ function notification(){
 }
 
 
+function gettingResultTable(){
+    player1TableBody.innerHTML = "";
+    player2TableBody.innerHTML = "";
+    firstPlayerRecord.forEach((value) => {
+        let row = document.createElement("tr");
+        let col1 = document.createElement("td");
+        let col2 = document.createElement("td");
 
+        col1.textContent = value.word;
+        col2.textContent = value.point;
+
+        row.appendChild(col1);
+        row.appendChild(col2);
+        player1TableBody.appendChild(row);
+    })
+
+    secondPlayerRecord.forEach((value) => {
+        let row = document.createElement("tr");
+        let col1 = document.createElement("td");
+        let col2 = document.createElement("td");
+
+        col1.textContent = value.word;
+        col2.textContent = value.point;
+
+        row.appendChild(col1);
+        row.appendChild(col2);
+        player2TableBody.appendChild(row);
+    })
+}
