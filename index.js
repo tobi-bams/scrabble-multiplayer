@@ -129,6 +129,13 @@ player1.addEventListener("click", () => {
             firstPlayerRecord.push(word);
         })
         gettingResultTable();
+        for(let i = 0; i < racket1.childElementCount; i++){
+            racket1.children[i].setAttribute("draggable", "false");
+        }
+        for(let i = 0; i < racket2.childElementCount; i++){
+            racket2.children[i].setAttribute("draggable", "true");
+        }
+        
     }
     else if(document.getElementById("boxId113").childElementCount === 0){
         alert('You must start playing your tiles from the center');
@@ -156,6 +163,12 @@ player2.addEventListener("click", () => {
             secondPlayerRecord.push(word);
         })
         gettingResultTable();
+        for(let i = 0; i < racket2.childElementCount; i++){
+            racket2.children[i].setAttribute("draggable", "false");
+        }
+        for(let i = 0; i < racket1.childElementCount; i++){
+            racket1.children[i].setAttribute("draggable", "true");
+        }
     }
     else{
         alert('Ops!!!............. It seems you are disobeying some of scrables fundamental rules.....\nPlease make neccesary Corrections and try again');
@@ -324,7 +337,6 @@ function selecting2(){
     letterTile.appendChild(value);
     letterTile.setAttribute("id", idLetter);
     idLetter += 1;
-    letterTile.setAttribute("draggable", "true");
     letterTile.addEventListener('dragstart', (evt) => {
         evt.dataTransfer.setData("Text", evt.target.id);
     })

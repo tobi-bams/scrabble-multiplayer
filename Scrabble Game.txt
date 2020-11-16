@@ -18,7 +18,7 @@ Issues
 6. Automating the random selection of letters from the array of letters (status) = Green.
 7. Making the board a droppable environment (status) = Green.
 8. making sure that once a letter is dropped and played with a right word the letter is no longer draggable = Green
-9. implementing that while player A is playing Player B must wait and can't play at the momment he can only shuffle his card (status) = Orange.
+9. implementing that while player A is playing Player B must wait and can't play at the momment he can only shuffle his card (status) = Green.
 10. Implementing a function that calculates for double word, triple word, double letter, tripple letter. (status) = Green.
 11. Implementing a function that ensures that Player 1 always starts his word from the center (status) = Green.
 12. Implementing a proper reading of each new word spelt (status) = Green.
