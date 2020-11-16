@@ -210,7 +210,6 @@ boxes.forEach(box => {
         evt.preventDefault();
         let id  = evt.dataTransfer.getData("text");
         evt.target.appendChild(document.getElementById(id));
-        console.log(evt.target.id);
         
         if(document.getElementById(id).childNodes[0].textContent === ""){
             blankLetterDiv.style.display = "grid";
@@ -231,7 +230,7 @@ boxes.forEach(box => {
                     selectedpoint.push(value);
                     selectedpoint.sort(function(a, b){return a - b});
                     gettingwork(evt.target.id);
-                    // console.log(selectedpoint);
+    
                     document.getElementById(ids).addEventListener("dragleave", (ev) => {
                         let id = evt.target.id;
                         leaveFuntion(id);
@@ -274,9 +273,7 @@ function leaveFuntion(id){
         playedwordsID = [];
         playedwordsID2 = [];
         let id = `boxId${selectedpoint[selectedpoint.length - 1]}`;
-        console.log(id);
         gettingwork(id);
-        console.log("happy");
     }
    
 }
@@ -300,7 +297,7 @@ let tiles = [{letter: "A", value: 1}, {letter: "A", value: 1}, {letter: "A", val
 {letter: "T", value: 1}, {letter: "T", value: 1}, {letter: "T", value: 1}, {letter: "T", value: 1}, {letter: "T", value: 1},
 {letter: "U", value: 1}, {letter: "U", value: 1}, {letter: "U", value: 1}, {letter: "U", value: 1}, {letter: "V", value: 4},
 {letter: "V", value: 4}, {letter: "W", value: 4}, {letter: "W", value: 4}, {letter: "X", value: 8}, {letter: "Y", value: 4},
-{letter: "Y", value: 4}, {letter: "Z", value: 10}, {letter: "", value: 0}, {letter: "", value: 0} 
+{letter: "Y", value: 4}, {letter: "Z", value: 10}, {letter: "I", value: 1}, {letter: "A", value: 1} 
 ];
 
 
@@ -529,7 +526,7 @@ function gettingMainword(){
         currentplayedWordScore += value.point;
     })
     counterholder.textContent = currentplayedWordScore;
-    return console.log(playedWords);
+    // return console.log(playedWords);
 }
 
 function gettingHorizonalWordForVerticalPlay(id){
@@ -611,7 +608,6 @@ function horizonWord(id){
 function horizontalMainWord(){
     let word = {word: "", point: 0};
     let multiplier4 = 1;
-    console.log(playedwordsID2);
     playedwordsID2.forEach((value) => {
         let id = `boxId${value}`;
         if(document.getElementById(id).className === "box DW" && selectedpoint.includes(value)){
@@ -643,7 +639,6 @@ function horizontalMainWord(){
         currentplayedWordScore += value.point;
     })
     counterholder.textContent = currentplayedWordScore;
-    console.log(playedWords);
 }
 
 function verticalwordforHorizontalPlay(id){
@@ -697,11 +692,10 @@ function storePlayedTiles(){
     selectedpoint = [];
     currentplayedWordScore = 0;
     counterholder.textContent = currentplayedWordScore;
-    return console.log(playedTiles);
 }
 
 function notification(){
-    if(tiles.length < 5){
+    if(tiles.length < 3){
         alert(`There are only ${tiles.length} tiles remaining.`);
     }
 }
